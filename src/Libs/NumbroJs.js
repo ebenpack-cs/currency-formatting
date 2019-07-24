@@ -17,7 +17,18 @@ badly designed API/difficult to use;
 Ties currency to language/locale;
 Weird API (formatting configuration requires mutating global state)`,
     formatter: ({ locale, currency, amount }) => {
-        numbro.setLanguage(formattedLocale(locale));
+        const localeTable = {
+            'AUD': 'en-AU',
+            'GBP': 'en-GB',
+            'CAD': 'en-CA',
+            'EUR': 'de-DE',
+            'HKD': 'zh-HK',
+            'NZD': 'en-NZ',
+            'SEK': 'sv-SE',
+            'CHF': 'fr-CH',
+            'USD': 'en-US',
+        }
+        numbro.setLanguage(formattedLocale(localeTable[currency]));
         return <span>{numbro(amount).formatCurrency({
             thousandSeparated: true,
             mantissa: 2,

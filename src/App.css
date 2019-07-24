@@ -43,7 +43,7 @@ table td {
 }
 table td {
   width: 100%;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   padding: 5px;
 }
 

@@ -7,12 +7,12 @@ import { IntlProvider } from 'react-intl'
 
 import { ErrorBoundary, stringEquals } from './util';
 
-import { CJS } from './Libs/CurrencyJs';
-import { DineroJs } from './Libs/DineroJs';
 import { AccountingJs } from './Libs/AccountingJs';
+import { CJS } from './Libs/CurrencyJs';
+import { CurrencyFormatterJs } from './Libs/CurrencyFormatterJs';
+import { DineroJs } from './Libs/DineroJs';
 import { NumbroJs } from './Libs/NumbroJs';
 import { NumeralJs } from './Libs/NumeralJs';
-import { CurrencyFormatterJs } from './Libs/CurrencyFormatterJs';
 import { ReactIntl } from './Libs/ReactIntl';
 
 const Header = {
@@ -24,12 +24,12 @@ const Header = {
 const formatters = [
   Header,
   ReactIntl,
-  CJS,
-  DineroJs,
   AccountingJs,
+  CJS,
+  CurrencyFormatterJs,
+  DineroJs,
   NumbroJs,
   NumeralJs,
-  CurrencyFormatterJs
 ];
 
 const currencies = [
@@ -45,12 +45,12 @@ const currencies = [
 ];
 
 const locales = [
+  'de-de',
   'en-us',
   'en-au',
   'en-ch',
   'se',
   'en-ca',
-  'de-de',
   'en-gb',
   'en-hk',
   'en-nz',
@@ -81,8 +81,8 @@ const DoSomeJunk = ({ locale }) => {
             className = formatter === Header || stringEquals(formattedText.trim(), canonical.trim()) ? "" : "mismatch";
           }
           return (
-            <ErrorBoundary>
-              <td key={locale + currency} className={className}>{formatted}</td>
+            <ErrorBoundary key={locale + currency}>
+              <td className={className}>{formatted}</td>
             </ErrorBoundary>
           );
         })}
@@ -110,7 +110,7 @@ const App = ({ locale }) => {
 }
 
 function Foo() {
-  const [locale, setLocale] = useState('en-us');
+  const [locale, setLocale] = useState('de-de');
   return (
     <div className="App">
       <select onChange={evt => setLocale(evt.target.value)}>
